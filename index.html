@@ -373,15 +373,16 @@ async function loadQuestions(){
 }
 // ─────────────────────────────────────────────────────────────────
 
-
 const key = params.get("key");
 
 if (key !== "TK2026") {
-  document.body.innerHTML = "<h2 style='font-family:sans-serif;text-align:center;margin-top:50px;'>Access denied</h2>";
-  throw new Error("Unauthorized access");
+  window.onload = () => {
+    document.body.innerHTML = "<h2 style='font-family:sans-serif;text-align:center;margin-top:50px;'>Access denied</h2>";
+  };
+  throw new Error("Unauthorized");
 }
-
 ``
+
 let presetName = params.get('name') || '';
 
 function hashStr(s){
