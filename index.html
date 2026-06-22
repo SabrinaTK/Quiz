@@ -397,8 +397,8 @@ function hashStr(s){
 async function getSeenQuestionIds(name){
   const key = 'seen:' + name.trim().toLowerCase();
   try{
-    const r = await window.storage.get(key, true);
-    if(r && r.value) return JSON.parse(r.value);
+    const val = localStorage.getItem(key);
+    if(val) return JSON.parse(val);
   }catch(e){ /* no history yet */ }
   return [];
 }
@@ -410,7 +410,7 @@ async function markQuestionSeen(name, questionId){
     seen.push(questionId);
   }
   try{
-    await window.storage.set(key, JSON.stringify(seen), true);
+    localStorage.setItem(key, JSON.stringify(seen));
   }catch(e){
     console.error('Could not save question history', e);
   }
