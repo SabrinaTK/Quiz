@@ -496,6 +496,11 @@ const allowedUsers = [
 const go = () => {
   const v = input.value.trim();
 
+  if (!v) {
+    input.focus();
+    return;
+  }
+
   if (!allowedUsers.includes(v)) {
     alert("You are not authorised to access this quiz.");
     return;
@@ -504,10 +509,6 @@ const go = () => {
   presetName = v;
   renderQuestion(presetName);
 };
-    if(!v) { input.focus(); return; }
-    presetName = v;
-    renderQuestion(presetName);
-  };
   btn.addEventListener('click', go);
   input.addEventListener('keydown', (e) => { if(e.key === 'Enter') go(); });
   setTimeout(()=>input.focus(), 50);
